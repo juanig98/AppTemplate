@@ -1,0 +1,10 @@
+asgiref
+Django 
+django-cors-headers 
+djangorestframework
+gunicorn
+mysqlclient
+pytz
+colorama
+black
+faker
