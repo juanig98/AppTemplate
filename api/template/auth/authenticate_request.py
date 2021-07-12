@@ -25,7 +25,7 @@ class AuthRequest(ObtainAuthToken):
             return None
 
         try:
-            usuario = User.objects.get(email=username, clave=hashlib.md5(password.encode("utf-8")).hexdigest())
+            user = User.objects.get(email=username, password=hashlib.md5(password.encode("utf-8")).hexdigest())
 
         except User.DoesNotExist:
             return None
@@ -33,7 +33,7 @@ class AuthRequest(ObtainAuthToken):
         except Exception as e:
             return str(e)
 
-        return User
+        return user
 
     def get_user(self, user_id):
         try:
@@ -50,7 +50,6 @@ class AuthRequest(ObtainAuthToken):
 
             if user.is_active:
                 token, created = Token.objects.get_or_create(user=user)
-                user_serializer = UserSerializer(user)
 
                 if created:
                     return Response({"token": token.key, "message": "Inicio de sesión exitoso"}, status=status.HTTP_201_CREATED)

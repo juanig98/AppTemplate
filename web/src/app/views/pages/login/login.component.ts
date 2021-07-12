@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email: new FormControl((environment.production) ? '' : 'juani@email', [Validators.required, Validators.email]),
-    contrasenia: new FormControl((environment.production) ? '' : 'abc.1234', [Validators.required])
+    username: new FormControl((environment.production) ? '' : 'juani@email', [Validators.required, Validators.email]),
+    password: new FormControl((environment.production) ? '' : 'abc.1234', [Validators.required])
   })
 
   isLoadingRegistrarse = false;

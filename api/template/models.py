@@ -5,7 +5,7 @@ from django.db import models
 class User(AbstractBaseUser, models.Model):
     id = models.IntegerField(db_column="id", primary_key=True)
     username = models.TextField(db_column="username", max_length=50, null=False)
-    email = models.TextField(db_column="email", max_length=100, null=False)
+    email = models.TextField(db_column="email", max_length=100, null=False, unique=True)
     first_name = models.CharField(db_column="first_name", max_length=25, null=False)
     last_name = models.CharField(db_column="last_name", max_length=20, null=False)
     password = models.TextField(db_column="password", max_length=100, null=False)
@@ -16,8 +16,8 @@ class User(AbstractBaseUser, models.Model):
         verbose_name_plural = "Users"
         db_table = "users"
 
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email", "first_name", "last_name", "password"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "first_name", "last_name", "password"]
 
     def id(self):
         return self.id

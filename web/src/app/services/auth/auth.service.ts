@@ -109,11 +109,11 @@ export class AuthService {
 }
 
 class Credentials {
-  email: string;
-  contrasenia: string;
+  username: string;
+  password: string;
 
-  constructor(email: string, contrasenia: string) {
-    this.email = email;
-    this.contrasenia = contrasenia;
+  constructor(username: string, password: string) {
+    this.username = username;
+    this.password = password;
   }
 }
