@@ -1,0 +1,19 @@
+$primary-color: #3E404C;
+$secondary-color: #056ab0;
+$primary-color-light: #19a1dd;
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-primary-color {
+  background-color: $primary-color;
+}
+.text-white {
+  color: white;
+}
+
+.bg-primary-color-gradient {
+  background: rgb(21, 66, 100);
+  background: linear-gradient(90deg, rgba(21, 66, 100, 1) 0%, rgba(31, 107, 164, 1) 15%, rgba(30, 128, 203, 1) 100%);
+}

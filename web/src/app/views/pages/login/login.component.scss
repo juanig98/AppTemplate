@@ -1,0 +1,81 @@
+@import "src/assets/scss/colors.scss";
+
+.body-login {
+  background: rgb(21, 66, 100);
+  background: linear-gradient(90deg, rgba(21, 66, 100, 1) 0%, rgba(31, 107, 164, 1) 15%, rgba(30, 128, 203, 1) 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.logo-container {
+  background-color: $primary-color;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.login-wrapper {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  align-content: center;
+  display: flex;
+  max-height: 600px;
+}
+
+@media screen and (max-width: 600px) {
+  .image-login {
+    visibility: hidden;
+    display: none;
+  }
+  .login-box {
+    width: 90vw;
+    text-align: center;
+    align-items: center;
+  }
+  .white-panel {
+    width: 100% !important;
+  }
+}
+
+.image-login {
+  background: oldlace;
+  width: 50vw;
+  max-width: 868px !important;
+}
+
+.login-box {
+  box-shadow: 2px 3px 4px 4px rgba(79, 79, 79, 0.18);
+  opacity: 1;
+  display: inline-flex;
+  width: 80vw;
+  max-width: 1368px !important;
+  border-radius: 6px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+}
+
+.white-panel {
+  width: 30vw;
+  border-radius: 6px;
+  background-color: white;
+  padding: 6%;
+}
+
+.btn-login {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+
+
+.registrarse {
+  color: $primary-color;
+  text-decoration: none;
+  font-size: small;
+}
+.registrarse:hover {
+  color: rgba(35, 75, 150, 0.85);
+}

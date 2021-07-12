@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/colors.scss";
+@import "./assets/scss/borders.scss";
+@import "./assets/scss/fonts.scss";
+@import "./assets/scss/texts.scss";
+@import "./assets/scss/positions.scss";
+@import "./assets/scss/sizins.scss";
+@import "./assets/scss/animations.scss";
+
+body {
+  padding: 25px;
+  background-color: $primary-color;
+  color: azure;
+  font-family: "Source Sans Pro", sans-serif, "italic";
+}
+
+::ng-deep .p-paginator {
+  padding: 2px !important;
+}
+::ng-deep .p-paginator .p-paginator-current {
+  font-size: 15px;
+}
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+  padding: 0.25rem 1rem;
+}
+
+::ng-deep .p-button{
+  background-color: $primary-color;
+  border: solid 1px $primary-color;
+}
+
+::ng-deep .p-button:hover{
+  background-color: $secondary-color;
+  border: solid 1px $secondary-color;
+}
+
+.table-card {
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.table-card-title {
+  color: $primary-color;
+  font-size: 20px;
+  font-weight: bold;
+}

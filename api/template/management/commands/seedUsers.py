@@ -1,6 +1,6 @@
 import hashlib
 from django.db.models.aggregates import Max
-from modoconcordia.models import *
+from template.models import *
 from typing import Any, Optional
 from django.core.management.base import BaseCommand
 from faker import Faker
@@ -13,12 +13,12 @@ class Command(BaseCommand):
 
         password = hashlib.md5("abc.1234".encode("utf-8")).hexdigest()
 
-        user = Usuario.objects.create( 
-            email='juanigalarza@gmail.com',
+        user = User.objects.create( 
             username='juanig',
-            apellido='Galarza',
-            nombres='Juan Ignacio',
-            clave=password
+            email='juanig@gmail.com',
+            first_name='Juan Ignacio',
+            last_name='Galarza',
+            password=password,
         )
 
         print(str(user))

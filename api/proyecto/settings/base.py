@@ -68,15 +68,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-LANGUAGE_CODE = 'es-es'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = "es"
+USE_TZ = False
+TIME_ZONE = "America/Argentina/Buenos_Aires"
 USE_I18N = True
-
 USE_L10N = True
-
-USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
@@ -89,3 +85,15 @@ AUTH_USER_MODEL = "template.User"
 AUTHENTICATION_BACKENDS = ["template.auth.authenticate_request.AuthRequest"]
 
 APPEND_SLASH = True
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
