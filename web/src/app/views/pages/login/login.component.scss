@@ -9,10 +9,17 @@
 
 .logo-container {
   background-color: $primary-color;
-  border-radius: 20px;
   text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   margin-bottom: 25px;
+  padding: 20px 0;
 }
+
+.container-form {
+  padding: 15px 20px 25px;
+}
+
 .login-wrapper {
   margin: 0;
   position: absolute;
@@ -22,6 +29,7 @@
   align-content: center;
   display: flex;
   max-height: 600px;
+  box-shadow: 2px 3px 4px 4px rgba(79, 79, 79, 0.10);
 }
 
 @media screen and (max-width: 600px) {
@@ -46,36 +54,19 @@
 }
 
 .login-box {
-  box-shadow: 2px 3px 4px 4px rgba(79, 79, 79, 0.18);
+  background-color: gainsboro;
   opacity: 1;
-  display: inline-flex;
-  width: 80vw;
-  max-width: 1368px !important;
-  border-radius: 6px;
+  display: block;
+  width: 90vw;
+  max-width: 450px !important;
+  border-radius: 25px;
+  padding: 0;
   transform: scale(1);
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
 }
 
-.white-panel {
-  width: 30vw;
-  border-radius: 6px;
-  background-color: white;
-  padding: 6%;
-}
-
 .btn-login {
   font-size: 16px;
   text-transform: uppercase;
-}
-
-
-
-.registrarse {
-  color: $primary-color;
-  text-decoration: none;
-  font-size: small;
-}
-.registrarse:hover {
-  color: rgba(35, 75, 150, 0.85);
 }

@@ -1,0 +1,30 @@
+<!-- Menú superior -->
+<p-menubar [model]="items">
+
+  <ng-template pTemplate="start">
+    <div class="p-mr-2">
+      <p-button type="text" (click)="displaySidebar = true" icon="pi pi-bars"></p-button>
+    </div>
+  </ng-template>
+
+  <!-- Items -->
+
+  <ng-template pTemplate="end">
+    <div class="p-d-flex">
+      <div class="p-mr-3">
+        <div>
+          {{ user.username }}
+        </div>
+      </div>
+      <div>
+        <p-button routerLink="/logout">Cerrar sesión</p-button>
+      </div>
+    </div>
+  </ng-template>
+
+</p-menubar>
+
+<!-- Menu de navegación lateral -->
+<p-sidebar [(visible)]="displaySidebar" [showCloseIcon]="false" [transitionOptions]="'600ms cubic-bezier(0, 0, 0.5, 1)'">
+  Content
+</p-sidebar>

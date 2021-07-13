@@ -2,15 +2,15 @@
   <div class="login-wrapper">
     <div class="login-box p-shadow-16 p-text-center">
 
-      <div class="white-panel">
-        <div class="w-100 mb-2 text-center title">
-          <div class="w-full | logo-container">
-            <div class="w-full | text-center | p-p-3">
-              <img src="assets/images/logo.png" alt="" class="m-auto"
-                width="100">
-            </div>
+      <div class="w-100 mb-2 text-center title">
+        <div class="w-full | logo-container">
+          <div class="w-full | text-center | p-p-3">
+            <img src="assets/images/logo.png" alt="" class="m-auto" width="100">
           </div>
         </div>
+      </div>
+
+      <div class="container-form">
 
         <form [formGroup]="loginForm" class="login-form">
           <div class="p-fluid">
@@ -23,8 +23,7 @@
 
             <div class="p-field p-col-12 p-mt-1">
               <span class="p-float-label">
-                <p-password formControlName="password" [feedback]="false"
-                  [toggleMask]="true"></p-password>
+                <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
                 <label for="float-input">Contraseña</label>
               </span>
             </div>
@@ -32,7 +31,7 @@
           </div>
 
           <div class="p-d-flex p-mt-5">
-            <div><a routerLink="/registro" class="registrarse">Registrarse</a></div>
+            <div></div>
             <div class="p-ml-auto">
               <p-button #btnLogin (click)="login()" type="submit" [loading]="isLoadingRegistrarse" label="Ingresar"
                 [disabled]="loginForm.invalid || disableBtnSubmit"> </p-button>
@@ -41,7 +40,6 @@
         </form>
       </div>
 
-      <div class="image-login"></div>
     </div>
   </div>
 </div>

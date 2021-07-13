@@ -37,8 +37,11 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { AccordionModule } from 'primeng/accordion';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenubarModule } from 'primeng/menubar';
+
 const primeModules = [
-  InputMaskModule, InputNumberModule, TabMenuModule, AccordionModule,
+  InputMaskModule, InputNumberModule, TabMenuModule, AccordionModule, SidebarModule, MenubarModule,
   DynamicDialogModule, ConfirmDialogModule, ToastModule, BlockUIModule, PanelModule, MessagesModule, MessageModule,
   SelectButtonModule, CalendarModule, InputSwitchModule, PasswordModule, SlideMenuModule, MegaMenuModule, ListboxModule,
   InputTextModule, TableModule, ButtonModule, CheckboxModule, RadioButtonModule, DropdownModule, InputTextareaModule, TabViewModule
@@ -50,12 +53,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { HomeComponent } from './views/pages/home/home.component';
+import { LogoutComponent } from './views/components/common/logout/logout.component';
+import { NavMenuComponent } from './views/components/common/nav-menu/nav-menu.component';
+import { UsersComponent } from './views/pages/users/users.component';
+import { TableUsersComponent } from './views/components/table-users/table-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    LogoutComponent,
+    NavMenuComponent,
+    UsersComponent,
+    TableUsersComponent,
   ],
   imports: [
     ...angularModules,

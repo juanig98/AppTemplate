@@ -1,0 +1,5 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="content" *ngIf="userSelected">
+  <app-table-users (eventUserSelected)="userSelected"></app-table-users>
+</div>

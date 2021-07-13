@@ -97,8 +97,8 @@ class ValidateToken(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        try:
-            token = request.data["token"]
+        try: 
+            token = request.data["token"] 
             token = Token.objects.filter(key=token).first()
 
             if token:

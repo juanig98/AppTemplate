@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { iif, Observable } from 'rxjs';
+import { iif, Observable, Subject } from 'rxjs';
 import { current_route, route_api } from 'src/app/config/routes';
 import { User } from 'src/app/models/User';
 import { Token } from 'src/app/models/Token';
@@ -16,7 +16,7 @@ const httpOptions = {
 const httpHeaders = function (token: string) {
   return {
     headers: new HttpHeaders({
-      Authorization: `${token}`
+      Authorization: `Token ${token}`
     })
   }
 }
@@ -44,13 +44,7 @@ export class AuthService {
 
   /** Define el User */
   private setUser(data: any): User {
-    return new User(
-      data.id,
-      data.username,
-      data.email,
-      data.first_name,
-      data.last_name,
-      new Date())
+    return new User(data.id, data.username, data.email, data.first_name, data.last_name, data.status, new Date());
   }
 
   /**
@@ -81,29 +75,31 @@ export class AuthService {
    *
    * @returns boolean
    */
-  public isLogged() {
-    const route = window.location.pathname;
-
+  public isLogged(): Observable<boolean> {
+    const subject = new Subject<boolean>();
     try {
 
       const token = this.getToken();
 
       // Si no hay token el en localstorage falla (retorna falso)
-      if (!token) throw new Error("Unauthorized");
+      if (!token) subject.next(false);
 
       // Si existe un User definido en un periodo menor a 5 minutos (periodo de gracia) se da como válido
       if (this.getUser()) {
         let currentTime = new Date();
-        // devConsoleLog("DefineAt -> " + this.getUser().definedAt.getTime(), "Current -> " + currentTime.getTime(), "Ten minutes ago -> " + (currentTime.getTime() - 100))
-        if (this.getUser().definedAt.getTime() > currentTime.getTime() - 300000) return true
+        if (this.getUser().definedAt.getTime() > currentTime.getTime() - 300000) subject.next(true)
       };
 
       // Si el User está fuera del periodo de gracia se valida con el token
-      return this.http.post<User>(`${route_api}/validate/`, { token: token }, httpHeaders(token)).subscribe(
-        response => { this.user = this.setUser(response); return true; }, // Si es válido
-        error => { return false } // Si no es válido
+      this.http.post<User>(`${route_api}/validate/`, { token: token }, httpHeaders(token)).subscribe(
+        response => { this.user = this.setUser(response); subject.next(true); }, // Si es válido
+        error => { subject.next(false) } // Si no es válido
       );
-    } catch { return false }
+    } catch {
+      subject.next(false)
+    } finally {
+      return subject.asObservable()
+    }
   }
 
 }

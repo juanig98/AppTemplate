@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class GuestService {
 
   constructor(public auth: AuthService, public router: Router) { }
 
@@ -15,15 +15,13 @@ export class AuthGuardService implements CanActivate {
     return this.auth.isLogged().pipe(
       map((response) => {
         if (response) {
-          return true
-        } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
           return false;
+        } else {
+          return true;
         }
       }), catchError((err: Response) => {
-        this.router.navigate(['/login']);
         return throwError(err.statusText);
       }));
   }
-
 }

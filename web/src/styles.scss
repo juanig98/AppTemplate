@@ -8,7 +8,8 @@
 @import "./assets/scss/animations.scss";
 
 body {
-  padding: 25px;
+  margin: 0;
+  padding: 0;
   background-color: $primary-color;
   color: azure;
   font-family: "Source Sans Pro", sans-serif, "italic";
@@ -24,12 +25,12 @@ body {
   padding: 0.25rem 1rem;
 }
 
-::ng-deep .p-button{
+::ng-deep .p-button {
   background-color: $primary-color;
   border: solid 1px $primary-color;
 }
 
-::ng-deep .p-button:hover{
+::ng-deep .p-button:hover {
   background-color: $secondary-color;
   border: solid 1px $secondary-color;
 }
@@ -43,4 +44,8 @@ body {
   color: $primary-color;
   font-size: 20px;
   font-weight: bold;
+}
+
+.content {
+  padding: 20px;
 }

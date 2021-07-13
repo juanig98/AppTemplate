@@ -10,7 +10,8 @@ class User(AbstractBaseUser, models.Model):
     last_name = models.CharField(db_column="last_name", max_length=20, null=False)
     password = models.TextField(db_column="password", max_length=100, null=False)
     last_login = models.DateTimeField(db_column='last_login', blank=True, null=True)
-
+    status = models.CharField(db_column='status', max_length=2, null=False)
+    
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
