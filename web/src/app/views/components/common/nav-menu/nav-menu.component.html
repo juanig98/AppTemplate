@@ -13,7 +13,7 @@
     <div class="p-d-flex">
       <div class="p-mr-3">
         <div>
-          {{ user.username }}
+          <!-- {{ user.first_name ? user.first_name : user.username}} -->
         </div>
       </div>
       <div>
@@ -26,5 +26,7 @@
 
 <!-- Menu de navegación lateral -->
 <p-sidebar [(visible)]="displaySidebar" [showCloseIcon]="false" [transitionOptions]="'600ms cubic-bezier(0, 0, 0.5, 1)'">
-  Content
+
+  <p-button *appPermission="16">Usuarios</p-button>
+  <p-button *appPermission="36">Clientes</p-button>
 </p-sidebar>

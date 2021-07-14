@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -28,13 +29,16 @@ export class AuthService {
 
   private user!: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private cookie: CookieService
+  ) { }
 
-  /** Seteo de token en local storage */
-  public setToken(token: string) { localStorage.setItem('token', token) }
+  /** Seteo de token en cookies */
+  public setToken(token: string) { this.cookie.set('token', token, 1, '/') }
 
-  /** Obtención del token desde el local storage */
-  public getToken(): any { return (localStorage.getItem('token')) ? localStorage.getItem('token') : "" }
+  /** Obtención del token desde el cookies */
+  public getToken(): string { return this.cookie.get('token') }
 
   /** Seteo de token en Http headers -> utilizado cuando realizo una petición al servidor*/
   public getHttpHeaders() { return httpHeaders(this.getToken()) }
@@ -42,10 +46,12 @@ export class AuthService {
   /** Obtiene el User registrado */
   public getUser(): User { return this.user; }
 
-  /** Define el User */
-  private setUser(data: any): User {
-    return new User(data.id, data.username, data.email, data.first_name, data.last_name, data.status, new Date());
-  }
+  /**
+   * @deprecated
+   * Define el User */
+  // private setUser(data: any): User {
+  //   return new User(data.id, data.username, data.email, data.first_name, data.last_name, data.status, new Date());
+  // }
 
   /**
    * Realiza el logueo en el backend enviando las credenciales que provea el User
@@ -61,13 +67,7 @@ export class AuthService {
    *
    */
   public logout() {
-    localStorage.removeItem('token');
-    // const token = this.getToken();
-
-    // this.http.post<any>(`${route_api}/logout/`, { token: token }, httpOptions).subscribe(
-    //   response => { localStorage.removeItem('token'); this.router.navigate(['login']) },
-    //   error => alert(error)
-    // );
+    this.cookie.deleteAll();
   }
 
   /**
@@ -81,18 +81,18 @@ export class AuthService {
 
       const token = this.getToken();
 
-      // Si no hay token el en localstorage falla (retorna falso)
+      // Si no hay token falla (retorna falso)
       if (!token) subject.next(false);
 
       // Si existe un User definido en un periodo menor a 5 minutos (periodo de gracia) se da como válido
       if (this.getUser()) {
         let currentTime = new Date();
-        if (this.getUser().definedAt.getTime() > currentTime.getTime() - 300000) subject.next(true)
+        if (this.getUser().date_joined.getTime() > currentTime.getTime() - 300000) subject.next(true)
       };
 
       // Si el User está fuera del periodo de gracia se valida con el token
       this.http.post<User>(`${route_api}/validate/`, { token: token }, httpHeaders(token)).subscribe(
-        response => { this.user = this.setUser(response); subject.next(true); }, // Si es válido
+        response => { this.user = response; subject.next(true); }, // Si es válido
         error => { subject.next(false) } // Si no es válido
       );
     } catch {

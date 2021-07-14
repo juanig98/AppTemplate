@@ -57,6 +57,8 @@ import { LogoutComponent } from './views/components/common/logout/logout.compone
 import { NavMenuComponent } from './views/components/common/nav-menu/nav-menu.component';
 import { UsersComponent } from './views/pages/users/users.component';
 import { TableUsersComponent } from './views/components/table-users/table-users.component';
+import { CookieService } from 'ngx-cookie-service';
+import { PermissionDirective } from './directives/permission.directive';
 
 @NgModule({
   declarations: [
@@ -67,12 +69,14 @@ import { TableUsersComponent } from './views/components/table-users/table-users.
     NavMenuComponent,
     UsersComponent,
     TableUsersComponent,
+    PermissionDirective,
   ],
   imports: [
     ...angularModules,
     ...primeModules
   ],
   providers: [
+    CookieService,
     { provide: LOCALE_ID, useValue: 'es-AR' },
   ],
   bootstrap: [AppComponent]

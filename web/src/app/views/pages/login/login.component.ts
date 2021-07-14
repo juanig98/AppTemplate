@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    username: new FormControl((environment.production) ? '' : 'juanig@gmail.com', [Validators.required, Validators.email]),
-    password: new FormControl((environment.production) ? '' : 'abc.1234', [Validators.required])
+    username: new FormControl((environment.production) ? '' : 'juani', [Validators.required]),
+    password: new FormControl((environment.production) ? '' : 'juanito123', [Validators.required])
   })
 
   isLoadingRegistrarse = false;
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(this.loginForm.value).subscribe(
         response => {
-          localStorage.setItem('token', response.token);
+          this.authService.setToken(response.token);
           this.router.navigate(['home']);
           this.isLoadingRegistrarse = false;
         },
