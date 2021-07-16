@@ -1,0 +1,30 @@
+@import "src/styles.scss";
+
+::ng-deep .p-sidebar-left {
+  background-color: #363841;
+}
+
+.item-sidebar {
+  border-radius: 3px;
+  border: solid 1px #3e404c;
+  padding: 6px;
+  background-color: $primary-color;
+}
+.item-sidebar:hover {
+  background-color: #3a3d50;
+  border: solid 1px #2e386f;
+  cursor: pointer;
+}
+
+
+.item-route {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.container-item {
+  padding: 5px 0;
+  width: 100%;
+}
+

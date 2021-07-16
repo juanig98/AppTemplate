@@ -14,6 +14,8 @@ export class NavMenuComponent implements OnInit {
   displaySidebar = false;
   user!: User;
   items: MenuItem[];
+  sidebarMenu: ItemSidebar[];
+
 
 
   constructor(private authService: AuthService) {
@@ -33,10 +35,27 @@ export class NavMenuComponent implements OnInit {
         ]
       }
     ];
+
+    this.sidebarMenu = [
+      { permission: 0, label: "Home", link: "/home" },
+      { permission: 16, label: "Usuarios", link: "/usuarios" },
+      { permission: 36, label: "Clientes", link: "/usuarios" }
+    ]
   }
 
   ngOnInit(): void {
     setTimeout(() => { this.user = this.authService.getUser() }, 500)
   }
 
+  getRoute(item: ItemSidebar){ return `/${item.link}`}
+
+}
+
+
+interface ItemSidebar {
+  permission: number
+  label: string;
+  link: string;
+  icon?: string;
+  children?: ItemSidebar[];
 }

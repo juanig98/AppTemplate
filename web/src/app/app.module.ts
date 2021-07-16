@@ -5,10 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 import localeEsAr from "@angular/common/locales/es-AR";
 
-const angularModules = [BrowserAnimationsModule, ReactiveFormsModule, AppRoutingModule, BrowserModule, HttpClientModule, FormsModule,]
+const angularModules = [
+  RouterModule,
+  CommonModule, BrowserAnimationsModule, ReactiveFormsModule, AppRoutingModule,
+  BrowserModule, HttpClientModule, FormsModule,]
 
 // Prime Modules
 import { SlideMenuModule } from 'primeng/slidemenu';
@@ -74,6 +79,9 @@ import { PermissionDirective } from './directives/permission.directive';
   imports: [
     ...angularModules,
     ...primeModules
+  ],
+  exports: [
+    AppRoutingModule,
   ],
   providers: [
     CookieService,

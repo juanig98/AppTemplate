@@ -38,7 +38,7 @@ export class PermissionDirective {
 
   private checkPermission(): boolean {
     try {
-
+      if (this.permission == 0) return true;
       if (!this.user) throw new Error("");
       console.log(this.user.user_permissions.includes(this.permission))
       return this.user.user_permissions.includes(this.permission);
