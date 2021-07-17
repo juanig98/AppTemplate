@@ -2,6 +2,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { User } from 'src/app/models/User';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -46,9 +47,7 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => { this.user = this.authService.getUser() }, 500)
   }
-
-  getRoute(item: ItemSidebar){ return `/${item.link}`}
-
+ 
 }
 
 

@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
             console.clear()
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario o contraseña incorrecto' });
           }
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario o contraseña incorrecto' });
+
           this.isLoadingRegistrarse = false;
         },
       );

@@ -19,13 +19,8 @@ export class PermissionDirective {
 
   @Input()
   set appPermission(permission: number) {
-
-    console.log(permission)
-
     this.permission = permission;
-
     this.user = this.authService.getUser();
-    console.log(this.user.user_permissions)
     this.updateView();
   }
 
@@ -40,9 +35,7 @@ export class PermissionDirective {
     try {
       if (this.permission == 0) return true;
       if (!this.user) throw new Error("");
-      console.log(this.user.user_permissions.includes(this.permission))
       return this.user.user_permissions.includes(this.permission);
-
     } catch {
       return false;
     }

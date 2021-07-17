@@ -6,6 +6,7 @@ import { iif, Observable, Subject } from 'rxjs';
 import { current_route, route_api } from 'src/app/config/routes';
 import { User } from 'src/app/models/User';
 import { Token } from 'src/app/models/Token';
+import { devConsoleLog } from 'src/app/config/helpers';
 
 
 const httpOptions = {
@@ -67,7 +68,7 @@ export class AuthService {
    *
    */
   public logout() {
-    this.cookie.deleteAll();
+    this.cookie.delete('token');
   }
 
   /**
@@ -85,14 +86,14 @@ export class AuthService {
       if (!token) subject.next(false);
 
       // Si existe un User definido en un periodo menor a 5 minutos (periodo de gracia) se da como válido
-      if (this.getUser()) {
-        let currentTime = new Date();
-        if (this.getUser().date_joined.getTime() > currentTime.getTime() - 300000) subject.next(true)
-      };
+      // if (this.getUser()) {
+      //   let currentTime = new Date();
+      //   if (this.getUser().date_joined.getTime() > currentTime.getTime() - 300000) subject.next(true)
+      // };
 
       // Si el User está fuera del periodo de gracia se valida con el token
       this.http.post<User>(`${route_api}/validate/`, { token: token }, httpHeaders(token)).subscribe(
-        response => { this.user = response; subject.next(true); }, // Si es válido
+        response => { this.user = response; devConsoleLog("ACA"); subject.next(true); }, // Si es válido
         error => { subject.next(false) } // Si no es válido
       );
     } catch {

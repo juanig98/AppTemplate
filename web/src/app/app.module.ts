@@ -1,4 +1,3 @@
-
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,12 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import localeEsAr from "@angular/common/locales/es-AR";
 
 const angularModules = [
-  RouterModule,
   CommonModule, BrowserAnimationsModule, ReactiveFormsModule, AppRoutingModule,
   BrowserModule, HttpClientModule, FormsModule,]
 
@@ -64,6 +61,7 @@ import { UsersComponent } from './views/pages/users/users.component';
 import { TableUsersComponent } from './views/components/table-users/table-users.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PermissionDirective } from './directives/permission.directive';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -84,6 +82,7 @@ import { PermissionDirective } from './directives/permission.directive';
     AppRoutingModule,
   ],
   providers: [
+    MessageService,
     CookieService,
     { provide: LOCALE_ID, useValue: 'es-AR' },
   ],

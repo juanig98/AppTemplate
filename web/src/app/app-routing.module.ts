@@ -7,15 +7,17 @@ import { HomeComponent } from './views/pages/home/home.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { UsersComponent } from './views/pages/users/users.component';
 
-export const routes: Routes = [
+const routes: Routes = [
   // No auth
   { path: "login", component: LoginComponent, canActivate: [GuestService] },
 
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // Require Authorization
   { path: "home", component: HomeComponent, canActivate: [AuthGuardService] },
   { path: "usuarios", component: UsersComponent, canActivate: [AuthGuardService] },
   { path: "logout", component: LogoutComponent, canActivate: [AuthGuardService] },
 
+  { path: "**", pathMatch: "full", redirectTo: "home" },
 ];
 
 @NgModule({

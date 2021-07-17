@@ -1,6 +1,7 @@
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { devConsoleLog } from 'src/app/config/helpers';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
 }

@@ -17,7 +17,7 @@
         </div>
       </div>
       <div>
-        <p-button [routerLink]="['/logout']">Cerrar sesión</p-button>
+        <p-button routerLink="/logout">Cerrar sesión</p-button>
       </div>
     </div>
   </ng-template>
@@ -28,10 +28,10 @@
 <p-sidebar [(visible)]="displaySidebar" [showCloseIcon]="false"
   [transitionOptions]="'600ms cubic-bezier(0, 0, 0.5, 1)'">
   <div class="container-item" *ngFor="let item of sidebarMenu">
-    <div *appPermission="item.permission" class="item-sidebar">
-      <a [routerLink]="['/home']" routerLinkActive="linkActive" class="item-route">
-        <i [ngClass]="item.icon ? item.icon : 'pi pi-circle-on'"></i> {{ item.label }}
-      </a>
+    <div *appPermission="item.permission" class="item-sidebar" [routerLink]="item.link">
+
+      <i [ngClass]="item.icon ? item.icon : 'pi pi-circle-on'"></i> {{ item.label }}
+
     </div>
   </div>
 </p-sidebar>

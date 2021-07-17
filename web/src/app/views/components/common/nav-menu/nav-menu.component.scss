@@ -9,6 +9,7 @@
   border: solid 1px #3e404c;
   padding: 6px;
   background-color: $primary-color;
+  color: white;
 }
 .item-sidebar:hover {
   background-color: #3a3d50;
@@ -16,10 +17,8 @@
   cursor: pointer;
 }
 
-
 .item-route {
   text-decoration: none;
-  color: white;
   font-size: 16px;
 }
 
@@ -27,4 +26,3 @@
   padding: 5px 0;
   width: 100%;
 }
-
