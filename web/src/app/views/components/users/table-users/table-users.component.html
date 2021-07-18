@@ -11,6 +11,7 @@
         <th>Nombres</th>
         <th>Apellido</th>
         <th>Estado</th>
+        <th>Acciones</th>
       </tr>
     </ng-template>
 
@@ -20,7 +21,20 @@
         <td>{{user.email}}</td>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
-        <td>{{user.status}}</td>
+        <td>
+          <span *ngIf="user.is_active"
+            style="font-size: 12px; font-weight: bold; padding: 5px; background-color: rgb(1, 182, 1); border-radius: 6px;color:rgb(0, 100, 0)">Activo</span>
+          <span *ngIf="!user.is_active"
+            style="font-size: 12px; font-weight: bold; padding: 5px; background-color: rgb(145, 145, 145); border-radius: 6px;color:rgb(72, 72, 72)">Inactivo</span>
+        </td>
+        <td>
+          <div class="p-m-auto">
+            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2"
+              (click)="editUser(user)"></button>
+            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+              (click)="disableUser(user)"></button>
+          </div>
+        </td>
       </tr>
     </ng-template>
 

@@ -16,4 +16,28 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${route_api}/users/`, this.authService.getHttpHeaders())
   }
+
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${route_api}/users/${id}`, this.authService.getHttpHeaders())
+  }
+
+  createUser(user: UserForm): Observable<User> {
+    return this.http.post<User>(`${route_api}/users/`, user, this.authService.getHttpHeaders());
+  }
+
+  editUser(id: number, user: UserForm): Observable<User> {
+    return this.http.put<User>(`${route_api}/users/${id}`, user, this.authService.getHttpHeaders());
+  }
+
+  disableUser(user: User): Observable<any> {
+    return this.http.delete<any>(`${route_api}/users/${user.id}`, this.authService.getHttpHeaders());
+  }
+}
+
+interface UserForm {
+  username: string;
+  first_name: string;
+  last_name: string;
+  password: string;
+  email: string;
 }

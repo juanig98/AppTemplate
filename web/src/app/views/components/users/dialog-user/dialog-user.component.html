@@ -1,0 +1,51 @@
+<div class="p-p-3">
+  <form [formGroup]="userForm">
+
+    <div class="p-grid p-fluid">
+      <div class="p-col-12 p-md-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input type="text" formControlName="username" pInputText placeholder="Nombre del usuario">
+        </div>
+      </div>
+
+      <div class="p-col-12 p-md-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input type="text" formControlName="first_name" pInputText placeholder="Nombre">
+        </div>
+      </div>
+
+      <div class="p-col-12 p-md-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input type="text" formControlName="last_name" pInputText placeholder="Apellido">
+        </div>
+      </div>
+
+    </div>
+    <div class="p-grid p-fluid p-mt-2">
+
+      <div class="p-col-12 p-md-6">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">@</span>
+          <input type="email" formControlName="email" pInputText placeholder="Correo electrónico">
+        </div>
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+          <p-password formControlName="password" [feedback]="false" [toggleMask]="true" placeholder="Contraseña">
+          </p-password>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w-full p-pr-3">
+      <p-button type="submit" label="Confirmar" (click)="submitUserForm()">
+      </p-button>
+    </div>
+  </form>
+</div>

@@ -58,10 +58,11 @@ import { HomeComponent } from './views/pages/home/home.component';
 import { LogoutComponent } from './views/components/common/logout/logout.component';
 import { NavMenuComponent } from './views/components/common/nav-menu/nav-menu.component';
 import { UsersComponent } from './views/pages/users/users.component';
-import { TableUsersComponent } from './views/components/table-users/table-users.component';
+import { TableUsersComponent } from './views/components/users/table-users/table-users.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PermissionDirective } from './directives/permission.directive';
 import { MessageService } from 'primeng/api';
+import { DialogUserComponent } from './views/components/users/dialog-user/dialog-user.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MessageService } from 'primeng/api';
     UsersComponent,
     TableUsersComponent,
     PermissionDirective,
+    DialogUserComponent,
   ],
   imports: [
     ...angularModules,

@@ -1,11 +1,16 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { devConsoleLog } from 'src/app/config/helpers';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/users/user.service';
+import { DialogUserComponent } from '../dialog-user/dialog-user.component';
 
 @Component({
   selector: 'app-table-users',
   templateUrl: './table-users.component.html',
-  styleUrls: ['./table-users.component.scss']
+  styleUrls: ['./table-users.component.scss'],
+  providers: [DialogService, ConfirmationService]
 })
 export class TableUsersComponent implements OnInit {
   tableName = 'table-users';
@@ -17,7 +22,11 @@ export class TableUsersComponent implements OnInit {
 
   @Output() eventUserSelected = new EventEmitter<User>();
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private confimationService: ConfirmationService,
+    public dialogService: DialogService
+  ) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe(
@@ -25,6 +34,26 @@ export class TableUsersComponent implements OnInit {
     )
   }
 
+  editUser(user: User) {
+    this.dialogService.open(DialogUserComponent, {
+      header: "Editar usuario",
+      width: "70%",
+      data: user,
+    })
+
+  }
+  disableUser(user: User) {
+    this.confimationService.confirm({
+      header: "¿Está seguro que desea deshabilitar este usuario?",
+      accept: () => {
+        this.userService.disableUser(user).subscribe(
+          response => { devConsoleLog(response) },
+          error => { devConsoleLog(error) }
+        )
+      }
+    });
+
+  }
   onRowSelect(): void { this.eventUserSelected.emit(this.userSelected) }
 
   // Table functions

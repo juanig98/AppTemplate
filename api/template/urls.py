@@ -8,5 +8,7 @@ urlpatterns = [
     path('validate/', ValidateToken.as_view(), name="validate"),
     path('logout/', Logout.as_view(), name="logout"),
     path('users/', UsersView.as_view({"get": "list"}), name="user-list"),
+    path('users/', UsersView.as_view({"post": "create"}), name="user-create"),
+    path('users/<int:id>', UsersView.as_view({"put": "update"}), name="user-put"),
     # path('users/<int:id>/', UsersView.as_view({"get": "retrieve"}), name="user-retrieve"), 
 ]
