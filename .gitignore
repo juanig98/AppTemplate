@@ -1,6 +1,5 @@
 api/env
-apiold
-web2
+docs/*
 web/node_modules
 *.pyc
 *.pyo

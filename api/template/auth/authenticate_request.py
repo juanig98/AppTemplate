@@ -16,8 +16,7 @@ from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from template.serializers import UserSerializer
 
-# Superuser:
-# juan lHTIW3taGmHA4m5j
+
 class AuthRequest(ObtainAuthToken):
 
     permission_classes = [AllowAny]
