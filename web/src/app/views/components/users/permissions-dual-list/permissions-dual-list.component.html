@@ -1,0 +1,17 @@
+<p-pickList [source]="available" [target]="granted" sourceHeader="Permisos disponibles"
+  targetHeader="Permisos otorgados" [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'30rem'}"
+  [targetStyle]="{'height':'30rem'}" filterBy="name" sourceFilterPlaceholder="Buscar por nombre"
+  targetFilterPlaceholder="Buscar por nombre">
+  <ng-template let-permission pTemplate="item">
+    <div>
+      <span>{{ permission.name | translate }}</span>
+    </div>
+  </ng-template>
+</p-pickList>
+
+<div class="p-d-flex p-mt-4 p-p-3">
+  <div></div>
+  <div class="p-ml-auto">
+    <button pButton pRipple type="button" label="Confirmar" class="p-button-rounded p-button-success" (click)="updatePermissions()"></button>
+  </div>
+</div>

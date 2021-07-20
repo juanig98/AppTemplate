@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment";
 import { DatePipe } from '@angular/common';
 
-export function devConsoleLog(...string: any) { if (environment.production) console.log(string) };
+export function devConsoleLog(...string: any) { if (!environment.production) console.log(string) };
 
 export function isEmail(email: string) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

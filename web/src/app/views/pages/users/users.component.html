@@ -1,6 +1,25 @@
 <app-nav-menu></app-nav-menu>
 
-<div class="content" *ngIf="!userSelected">
-  <p-button (click)="addUser()" label="Nuevo usuario" icon="pi pi-plus"></p-button>
-  <app-table-users (eventUserSelected)="userSelected"></app-table-users>
+<div *appPermission="16">
+  <div class="content">
+    <div *ngIf="!userSelected">
+      <app-table-users (eventUserSelected)="onUserSelected($event)"></app-table-users>
+    </div>
+
+    <div *ngIf="userSelected" class="w-full p-mx-5 p-my-4 p-d-flex">
+      <div></div>
+      <div class="p-ml-auto p-my-2 p-d-flex" style="vertical-align: middle; align-items: center;">
+        <div class="p-mr-3"> Usuario seleccionado: {{ userSelected.username}} </div>
+        <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+          (click)="deselectUser()"></button>
+      </div>
+    </div>
+
+    <div *ngIf="userSelected" class="p-mt-3">
+      <app-permissions-dual-list [userSelected]="userSelected" (deselectUser)="deselectUser()"></app-permissions-dual-list>
+    </div>
+  </div>
 </div>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

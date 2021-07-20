@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { devConsoleLog } from 'src/app/config/helpers';
 import { User } from 'src/app/models/User';
@@ -15,15 +16,19 @@ export class DialogUserComponent implements OnInit {
   isCreate: boolean = false;
   isUpdate: boolean = false;
 
+  resetPassword: boolean = false;
+
   userForm = new FormGroup({
     username: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
     password: new FormControl(''),
     email: new FormControl('', [Validators.email, Validators.required]),
+    resetPassword: new FormControl('')
   })
 
   constructor(
+    private messageService: MessageService,
     private userService: UserService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig
@@ -44,18 +49,22 @@ export class DialogUserComponent implements OnInit {
     }
 
   }
+
   submitUserForm() {
 
     if (this.isCreate) {
       this.userService.createUser(this.userForm.value).subscribe(
-        response => { devConsoleLog(response) },
-        error => { devConsoleLog(error) }
+        response => { this.ref.close(true) },
+        error => { this.messageService.add({ severity: "error", summary: "Ocurrió un error", detail: error }) }
       )
     }
     if (this.isUpdate) {
+      devConsoleLog(this.resetPassword)
+      this.userForm.get('resetPassword')?.setValue(this.resetPassword);
+
       this.userService.editUser(this.user.id, this.userForm.value).subscribe(
-        response => { devConsoleLog(response) },
-        error => { devConsoleLog(error) }
+        response => { this.ref.close(true) },
+        error => { this.messageService.add({ severity: "error", summary: "Ocurrió un error", detail: error }) }
       )
     }
 

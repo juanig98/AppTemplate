@@ -1,12 +1,16 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, registerLocaleData } from '@angular/common';
-
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import localeEsAr from "@angular/common/locales/es-AR";
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 const angularModules = [
   CommonModule, BrowserAnimationsModule, ReactiveFormsModule, AppRoutingModule,
@@ -41,9 +45,12 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { AccordionModule } from 'primeng/accordion';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenubarModule } from 'primeng/menubar';
+import { PickListModule } from 'primeng/picklist';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 const primeModules = [
-  InputMaskModule, InputNumberModule, TabMenuModule, AccordionModule, SidebarModule, MenubarModule,
+  ToggleButtonModule,
+  InputMaskModule, InputNumberModule, TabMenuModule, AccordionModule, SidebarModule, MenubarModule, PickListModule,
   DynamicDialogModule, ConfirmDialogModule, ToastModule, BlockUIModule, PanelModule, MessagesModule, MessageModule,
   SelectButtonModule, CalendarModule, InputSwitchModule, PasswordModule, SlideMenuModule, MegaMenuModule, ListboxModule,
   InputTextModule, TableModule, ButtonModule, CheckboxModule, RadioButtonModule, DropdownModule, InputTextareaModule, TabViewModule
@@ -61,8 +68,10 @@ import { UsersComponent } from './views/pages/users/users.component';
 import { TableUsersComponent } from './views/components/users/table-users/table-users.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PermissionDirective } from './directives/permission.directive';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogUserComponent } from './views/components/users/dialog-user/dialog-user.component';
+import { ClientsComponent } from './views/pages/clients/clients.component';
+import { PermissionsDualListComponent } from './views/components/users/permissions-dual-list/permissions-dual-list.component';
 
 @NgModule({
   declarations: [
@@ -75,16 +84,26 @@ import { DialogUserComponent } from './views/components/users/dialog-user/dialog
     TableUsersComponent,
     PermissionDirective,
     DialogUserComponent,
+    ClientsComponent,
+    PermissionsDualListComponent,
   ],
   imports: [
     ...angularModules,
-    ...primeModules
+    ...primeModules,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [
     AppRoutingModule,
   ],
   providers: [
     MessageService,
+    ConfirmationService,
     CookieService,
     { provide: LOCALE_ID, useValue: 'es-AR' },
   ],

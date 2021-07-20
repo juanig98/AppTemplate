@@ -26,14 +26,14 @@
     </div>
     <div class="p-grid p-fluid p-mt-2">
 
-      <div class="p-col-12 p-md-6">
+      <div class="p-col-12 p-md-4">
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon">@</span>
           <input type="email" formControlName="email" pInputText placeholder="Correo electrónico">
         </div>
       </div>
 
-      <div class="p-col-12 p-md-6">
+      <div class="p-col-12 p-md-4">
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
           <p-password formControlName="password" [feedback]="false" [toggleMask]="true" placeholder="Contraseña">
@@ -41,11 +41,16 @@
         </div>
       </div>
 
+      <div class="p-col-12 p-md-4" *ngIf="isUpdate">
+        <p-toggleButton formControlName="resetPassword" [(ngModel)]="resetPassword" onLabel="Resetear" offLabel="No resetear" onIcon="pi pi-check" offIcon="pi pi-times"></p-toggleButton>
+      </div>
     </div>
 
-    <div class="w-full p-pr-3">
-      <p-button type="submit" label="Confirmar" (click)="submitUserForm()">
-      </p-button>
+    <div class="w-full p-d-flex p-mt-3">
+      <div></div>
+      <div class="p-ml-auto">
+        <p-button type="submit" label="Confirmar" (click)="submitUserForm()"> </p-button>
+      </div>
     </div>
   </form>
 </div>

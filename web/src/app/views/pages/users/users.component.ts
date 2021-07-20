@@ -10,21 +10,14 @@ import { DialogUserComponent } from '../../components/users/dialog-user/dialog-u
 })
 export class UsersComponent implements OnInit {
 
-  @Input() userSelected: User | null | undefined;
+  @Input() userSelected: User | undefined;
 
-  constructor(public dialogService: DialogService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-
-  addUser(){
-    const ref = this.dialogService.open(DialogUserComponent, {
-      header: 'Agregar usuario',
-      width: '70%'
-  });
-  }
-
-
+  onUserSelected(user: User) { this.userSelected = user }
+  deselectUser(): void { this.userSelected = undefined }
 
 }

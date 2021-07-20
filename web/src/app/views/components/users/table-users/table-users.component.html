@@ -1,3 +1,10 @@
+<div class="p-d-flex">
+  <div></div>
+  <div class="p-ml-auto">
+    <p-button (click)="addUser()" label="Nuevo usuario" icon="pi pi-plus"></p-button>
+  </div>
+</div>
+
 <div class="card" *appPermission="36">
   <h5>Usuarios</h5>
   <p-table [paginator]="true" [rows]="10" [showCurrentPageReport]="true" styleClass="p-datatable-sm"
@@ -21,19 +28,20 @@
         <td>{{user.email}}</td>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
-        <td>
-          <span *ngIf="user.is_active"
-            style="font-size: 12px; font-weight: bold; padding: 5px; background-color: rgb(1, 182, 1); border-radius: 6px;color:rgb(0, 100, 0)">Activo</span>
-          <span *ngIf="!user.is_active"
-            style="font-size: 12px; font-weight: bold; padding: 5px; background-color: rgb(145, 145, 145); border-radius: 6px;color:rgb(72, 72, 72)">Inactivo</span>
+        <td style="text-align: center;">
+          <span *ngIf="user.is_active" class="status enable">Activo</span>
+          <span *ngIf="!user.is_active" class="status disable">Inactivo</span>
         </td>
-        <td>
-          <div class="p-m-auto">
-            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2"
-              (click)="editUser(user)"></button>
-            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
-              (click)="disableUser(user)"></button>
-          </div>
+        <td style="text-align: center;">
+          <button pButton pRipple type="button" icon="pi pi-unlock" class="p-button-rounded p-mr-2"
+            style="background-color: brown; border-color: brown;" *ngIf="user.is_active" (click)="editPermissions(user)"
+            title="Editar permisos usuario"></button>
+          <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2"
+            *ngIf="user.is_active" (click)="editUser(user)" title="Editar usuario"></button>
+          <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+            *ngIf="user.is_active" (click)="disableUser(user)" title="Deshabilitar usuario"></button>
+          <button pButton pRipple type="button" icon="pi pi-replay" class="p-button-rounded p-button-warning"
+            *ngIf="!user.is_active" (click)="enableUser(user)" title="Habilitar usuario"></button>
         </td>
       </tr>
     </ng-template>

@@ -1,0 +1,14 @@
+{
+  "Can add permission": "Asignar permisos",
+  "Can change permission": "Cambiar permisos",
+  "Can delete permission": "Eliminar permisos",
+  "Can view permission": "Ver permisos",
+  "Can add user": "Crear usuarios",
+  "Can change user": "Modificar usuarios",
+  "Can delete user": "Eliminar usuarios",
+  "Can view user": "Ver usuarios",
+  "Can add Client": "Crear clientes",
+  "Can change Client": "Modificar clientes",
+  "Can delete Client": "Eliminar clientes",
+  "Can view Client": "Ver clientes"
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { devConsoleLog } from 'src/app/config/helpers';
 import { User } from 'src/app/models/User';
@@ -10,7 +10,7 @@ import { DialogUserComponent } from '../dialog-user/dialog-user.component';
   selector: 'app-table-users',
   templateUrl: './table-users.component.html',
   styleUrls: ['./table-users.component.scss'],
-  providers: [DialogService, ConfirmationService]
+  providers: [DialogService]
 })
 export class TableUsersComponent implements OnInit {
   tableName = 'table-users';
@@ -23,38 +23,82 @@ export class TableUsersComponent implements OnInit {
   @Output() eventUserSelected = new EventEmitter<User>();
 
   constructor(
+    private messageService: MessageService,
     private userService: UserService,
     private confimationService: ConfirmationService,
     public dialogService: DialogService
   ) { }
 
-  ngOnInit() {
-    this.userService.getUsers().subscribe(
-      response => this.users = response
-    )
+  ngOnInit() { this.listUsers(); }
+
+  listUsers(): void { this.userService.getUsers().subscribe(response => this.users = response) }
+
+  addUser(): void {
+    const dialog = this.dialogService.open(DialogUserComponent, {
+      header: 'Agregar usuario',
+      width: '70%'
+    });
+    dialog.onClose.subscribe((response) => {
+      if (response) {
+        this.messageService.add({ severity: "success", summary: "Listo!", detail: "Usuario creado exitosamente" })
+
+      }
+    });
   }
 
-  editUser(user: User) {
-    this.dialogService.open(DialogUserComponent, {
+  editUser(user: User): void {
+    const dialog = this.dialogService.open(DialogUserComponent, {
       header: "Editar usuario",
       width: "70%",
       data: user,
     })
 
+    dialog.onClose.subscribe((response) => {
+      if (response) {
+        this.messageService.add({ severity: "success", summary: "Listo!", detail: "Usuario editado exitosamente" })
+        this.listUsers();
+      }
+    })
   }
-  disableUser(user: User) {
+
+  disableUser(user: User): void {
     this.confimationService.confirm({
-      header: "¿Está seguro que desea deshabilitar este usuario?",
+      header: "Confirmación",
+      message: "¿Está seguro que desea deshabilitar este usuario?  ",
+      acceptLabel: "Si, deshabilitar",
       accept: () => {
         this.userService.disableUser(user).subscribe(
-          response => { devConsoleLog(response) },
-          error => { devConsoleLog(error) }
+          response => {
+            this.messageService.add({ severity: "success", summary: "Listo!", detail: "Usuario deshabilitado" })
+            this.listUsers();
+          },
+          error => { this.messageService.add({ severity: "error", summary: "Ocurrió un error!", detail: error }) }
         )
       }
     });
-
   }
-  onRowSelect(): void { this.eventUserSelected.emit(this.userSelected) }
+
+  enableUser(user: User): void {
+    this.confimationService.confirm({
+      header: "Confirmación",
+      message: "¿Está seguro que desea habilitar este usuario?  ",
+      acceptLabel: "Si, habilitar",
+      accept: () => {
+        this.userService.enableUser(user).subscribe(
+          response => {
+            this.messageService.add({ severity: "success", summary: "Listo!", detail: "Usuario habilitado" })
+            this.listUsers();
+          },
+          error => { this.messageService.add({ severity: "error", summary: "Ocurrió un error!", detail: error }) }
+        )
+      }
+    });
+  }
+
+  editPermissions(user: User): void { this.eventUserSelected.emit(user) }
+
+
+  onRowSelect(): void { } //this.eventUserSelected.emit(this.userSelected)}
 
   // Table functions
   next() { this.first = this.first + this.rows; }

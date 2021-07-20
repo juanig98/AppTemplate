@@ -1,4 +1,3 @@
- 
 @import "./assets/scss/colors.scss";
 @import "./assets/scss/borders.scss";
 @import "./assets/scss/fonts.scss";
@@ -15,16 +14,54 @@ body {
   font-family: "Source Sans Pro", sans-serif, "italic";
 }
 
+// Datatable
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th:first-child {
+  border-top-left-radius: 8px;
+}
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th:last-child {
+  border-top-right-radius: 8px;
+}
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+  text-align: center;
+  padding: 15px;
+}
+::ng-deep .p-datatable .p-paginator-bottom {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+  padding: 0.25rem 1rem;
+}
+// Paginator
 ::ng-deep .p-paginator {
   padding: 2px !important;
 }
 ::ng-deep .p-paginator .p-paginator-current {
   font-size: 15px;
 }
-::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
-  padding: 0.25rem 1rem;
+
+// Fin datatables
+
+// Dialogs
+::ng-deep .p-dialog .p-dialog-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
+// ::ng-deep .p-dialog .p-dialog-content {
+//   border-bottom-left-radius: 8px;
+//   border-bottom-right-radius: 8px;
+// }
+
+
+::ng-deep .p-dialog .p-dialog-footer {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+// Fin dialogs
+
+// Buttons
 ::ng-deep .p-button {
   background-color: $primary-color;
   border: solid 1px $primary-color;
@@ -34,6 +71,7 @@ body {
   background-color: $secondary-color;
   border: solid 1px $secondary-color;
 }
+// Fin Buttons
 
 .table-card {
   background-color: #ffffff;

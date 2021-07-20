@@ -39,15 +39,15 @@ export class NavMenuComponent implements OnInit {
 
     this.sidebarMenu = [
       { permission: 0, label: "Home", link: "/home" },
+      { permission: 36, label: "Clientes", link: "/clientes" },
       { permission: 16, label: "Usuarios", link: "/usuarios" },
-      { permission: 36, label: "Clientes", link: "/usuarios" }
     ]
   }
 
   ngOnInit(): void {
     setTimeout(() => { this.user = this.authService.getUser() }, 500)
   }
- 
+
 }
 
 

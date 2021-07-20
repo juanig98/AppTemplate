@@ -1,0 +1,17 @@
+.status {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.enable {
+  background-color: rgb(1, 182, 1);
+  color: rgb(0, 100, 0);
+}
+
+.disable {
+  background-color: rgb(145, 145, 145);
+  color: rgb(72, 72, 72);
+}

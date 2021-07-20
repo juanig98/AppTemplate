@@ -7,7 +7,7 @@ SECRET_KEY = "django-insecure-iv+8e7xe7ctp@bk6r_6)=srr0j(imy&e*str_31-f@9ebagj02
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 CORS_ALLOW_METHODS = ["GET", "OPTIONS", "PATCH", "POST", "PUT", "DELETE"]
 
@@ -28,4 +28,7 @@ DATABASES = {
         "PORT": "3306",
     }
 }
-# AUTHENTICATION_BACKENDS = ["template.auth.authenticate_request.AuthRequest"]
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",  # this is default 
+)

@@ -30,8 +30,13 @@ export class UserService {
   }
 
   disableUser(user: User): Observable<any> {
-    return this.http.delete<any>(`${route_api}/users/${user.id}`, this.authService.getHttpHeaders());
+    return this.http.get<any>(`${route_api}/users/disable/${user.id}`, this.authService.getHttpHeaders());
   }
+
+  enableUser(user: User): Observable<any> {
+    return this.http.get<any>(`${route_api}/users/enable/${user.id}`, this.authService.getHttpHeaders());
+  }
+
 }
 
 interface UserForm {
