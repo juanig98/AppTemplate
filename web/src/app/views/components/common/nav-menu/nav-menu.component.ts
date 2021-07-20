@@ -16,10 +16,15 @@ export class NavMenuComponent implements OnInit {
   user!: User;
   items: MenuItem[];
   sidebarMenu: ItemSidebar[];
-
+  rightMenuItems: MenuItem[]
 
 
   constructor(private authService: AuthService) {
+
+    this.rightMenuItems = [
+      { label: this.authService.getUser().username },
+      { label: "Cerrar sesión", routerLink: "/logout" }
+    ]
     this.items = [
       {
         label: 'File',
