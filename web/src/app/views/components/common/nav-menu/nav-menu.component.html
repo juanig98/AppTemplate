@@ -12,15 +12,11 @@
   <ng-template pTemplate="end">
     <p-dropdown [options]="rightMenuItems" optionLabel="label" class="p-mr-3">
       <ng-template let-item pTemplate="item">
-        <div class="country-item">
-          <div class="p-p-2">
-            <a *ngIf="item.routerLink" [routerLink]="item.routerLink">
-              {{ item.label }}
-            </a>
-            <div *ngIf="!item.routerLink">
-              {{ item.label }}
-            </div>
-          </div>
+        <div class="w-full p-p-2 p-text-center" *ngIf="item.routerLink" [routerLink]="item.routerLink">
+          {{ item.label }}
+        </div>
+        <div *ngIf="!item.routerLink" class="p-text-center p-px-2 p-pt-2 p-pb-3">
+          {{ item.label }} <div class="p-pr-3"></div><div></div>
         </div>
       </ng-template>
     </p-dropdown>
@@ -32,7 +28,7 @@
 <p-sidebar [(visible)]="displaySidebar" [showCloseIcon]="false"
   [transitionOptions]="'600ms cubic-bezier(0, 0, 0.5, 1)'">
   <div class="container-item" *ngFor="let item of sidebarMenu">
-    <a *appPermission="item.permission" [routerLink]="item.link" class="router-link-nav">
+    <a *appPermission="{permission:item.permission}" [routerLink]="item.link" class="router-link-nav">
       <div class="item-sidebar">
         <i [ngClass]="item.icon ? item.icon : 'pi pi-circle-on'"></i> {{ item.label }}
       </div>

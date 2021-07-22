@@ -7,10 +7,12 @@ import { TitleService } from 'src/app/services/title/title.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private titleService: TitleService) { }
-
-  ngOnInit(): void {
-    this.titleService.setTitle("Home")
+  constructor(
+    private titleService: TitleService
+  ) {
+    this.titleService.setTitle("Home");
   }
+
+  ngOnInit(): void { }
 
 }

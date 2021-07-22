@@ -23,7 +23,8 @@ export class NavMenuComponent implements OnInit {
 
     this.rightMenuItems = [
       { label: this.authService.getUser().username },
-      { label: "Cerrar sesión", routerLink: "/logout" }
+      { label: "Cerrar sesión", routerLink: "/logout" },
+      
     ]
     this.items = [
       {

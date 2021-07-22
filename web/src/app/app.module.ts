@@ -72,6 +72,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogUserComponent } from './views/components/users/dialog-user/dialog-user.component';
 import { ClientsComponent } from './views/pages/clients/clients.component';
 import { PermissionsDualListComponent } from './views/components/users/permissions-dual-list/permissions-dual-list.component';
+import { TableClientsComponent } from './views/components/clients/table-clients/table-clients.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { PermissionsDualListComponent } from './views/components/users/permissio
     DialogUserComponent,
     ClientsComponent,
     PermissionsDualListComponent,
+    TableClientsComponent,
   ],
   imports: [
     ...angularModules,

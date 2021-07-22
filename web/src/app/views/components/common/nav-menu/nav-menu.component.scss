@@ -27,6 +27,10 @@
   width: 100%;
 }
 
-.router-link-nav{
+.router-link-nav {
   text-decoration: none;
+}
+
+::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 0;
 }

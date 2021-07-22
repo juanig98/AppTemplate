@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { TitleService } from 'src/app/services/title/title.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -21,10 +22,13 @@ export class LoginComponent implements OnInit {
   disableBtnSubmit = false;
 
   constructor(
+    private titleService: TitleService,
     private messageService: MessageService,
     private authService: AuthService,
     private router: Router,
-  ) { }
+  ) {
+    this.titleService.setTitle("Acceso");
+  }
 
   ngOnInit(): void {
 

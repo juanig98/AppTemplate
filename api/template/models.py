@@ -11,6 +11,9 @@ class Client(models.Model):
     address_name = models.TextField(max_length=50, null=True)
     address_number = models.SmallIntegerField(null=True)
     address_aclaration = models.CharField(max_length=10, null=True)
+    document = models.CharField(max_length=11, null=True)
+    business_name = models.TextField(max_length=50, null=True)
+    
 
     class Meta:
         verbose_name = "Client"

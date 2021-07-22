@@ -1,6 +1,6 @@
 <app-nav-menu></app-nav-menu>
 
-<div *appPermission="16">
+<div *appPermission="{permission:16}">
   <div class="content">
     <div *ngIf="!userSelected">
       <app-table-users (eventUserSelected)="onUserSelected($event)"></app-table-users>
@@ -16,7 +16,8 @@
     </div>
 
     <div *ngIf="userSelected" class="p-mt-3">
-      <app-permissions-dual-list [userSelected]="userSelected" (deselectUser)="deselectUser()"></app-permissions-dual-list>
+      <app-permissions-dual-list [userSelected]="userSelected" (deselectUser)="deselectUser()">
+      </app-permissions-dual-list>
     </div>
   </div>
 </div>
